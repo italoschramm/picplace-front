@@ -5,8 +5,8 @@
         </div>
         <div class="card">
             <TabMenu :model="items" />
-            <router-view/>
         </div>
+        <router-view/>
     </div>
 </template>
 
@@ -23,16 +23,20 @@ export default {
                     to: "/"
                 },
                 {
-                    label: 'Aluguel',
+                    label: 'Alugue',
                     to: "/about"
                 },
                 {
-                    label: 'Venda',
+                    label: 'Compre',
                     to: "/about2"
                 },
                 {
+                    label: 'Anuncie',
+                    to: "/login"
+                },
+                {
                     label: 'Sobre',
-                    to: "/about3"
+                    to: "/about4"
                 }
             ]
         }
@@ -51,6 +55,7 @@ export default {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    width: 100%;
 }
 
 .div-logo { 

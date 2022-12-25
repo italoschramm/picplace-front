@@ -15,19 +15,20 @@
 			<template #list="slotProps">
 				<div class="col-12">
 					<div class="product-list-item">
-						<img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" :alt="slotProps.data.description"/>
+						<img :src="slotProps.data.pictures[0].code" :alt="slotProps.data.name" width="100" height="50"/>
 						<div class="product-list-detail">
+							<span :class="'product-badge status-'">{{slotProps.data.city}} - {{slotProps.data.state}}</span>
 							<!-- <div class="product-name">{{slotProps.data.name}}</div> -->
-							<div class="product-name">Name Apt</div>
+							<div class="product-name">{{slotProps.data.district}}</div>
 							<!-- <div class="product-description">{{slotProps.data.description}}</div> -->
-							<div class="product-description">Description</div>
-							<Rating :modelValue="slotProps.data.rating" :readonly="true" :cancel="false"></Rating>
-							<i class="pi pi-tag product-category-icon"></i><span class="product-category">{{slotProps.data.category}}</span>
+							<div class="product-description">Dormitórios: {{slotProps.data.bedrooms}} - Área Total: {{slotProps.data.totalArea}}m²</div>
+							<!-- <Rating :modelValue="slotProps.data.rating" :readonly="true" :cancel="false"></Rating> -->
+							<div class="product-category">{{slotProps.data.transactionType.description}}</div>
 						</div>
 						<div class="product-list-action">
-							<span class="product-price">${{slotProps.data.salePrice}}</span>
+							<!-- <span class="product-price">${{slotProps.data.salePrice}}</span>
 							<Button icon="pi pi-shopping-cart" label="Add to Cart" :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"></Button>
-							<span :class="'product-badge status-'+slotProps.data.inventoryStatus.toLowerCase()">{{slotProps.data.inventoryStatus}}</span>
+							<span :class="'product-badge status-'+slotProps.data.inventoryStatus.toLowerCase()">{{slotProps.data.inventoryStatus}}</span> -->
 						</div>
 					</div>
 				</div>
@@ -38,14 +39,15 @@
 					<div class="product-grid-item card">
 						<div class="product-grid-item-top">
 							<div>
-								<i class="pi pi-tag product-category-icon"></i>
-								<span class="product-category">{{slotProps.data.category}}</span>
+								<div class="product-category">{{slotProps.data.transactionType.description}}</div>
+								<!-- <i class="pi pi-tag product-category-icon"></i>
+								<span class="product-category">Teste</span> -->
 							</div>
 							<!-- <span :class="'product-badge status-'+slotProps.data.description.toLowerCase()">{{slotProps.data.inventoryStatus}}</span> -->
 							<span :class="'product-badge status-'">{{slotProps.data.city}} - {{slotProps.data.state}}</span>
 						</div>
 						<div class="product-grid-item-content">
-							<img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" :alt="slotProps.data.name"/>
+							<img :src="slotProps.data.pictures[0].code" :alt="slotProps.data.name" width="350" height="300"/>
 							<!-- <div class="product-name">{{slotProps.data.name}}</div> -->
 							<div class="product-name">{{slotProps.data.district}}</div>
 							<!-- <div class="product-description">{{slotProps.data.description}}</div> -->
@@ -53,8 +55,8 @@
 							<!-- <Rating :modelValue="slotProps.data.rating" :readonly="true" :cancel="false"></Rating> -->
 						</div>
 						<div class="product-grid-item-bottom">
-							<span class="product-price">R${{slotProps.data.salePrice}}</span>
-							<Button icon="pi pi-shopping-cart" :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"></Button>
+							<span class="product-price">{{this.formatAsCurrency(slotProps.data.salePrice)}}</span>
+							<Button icon="pi pi-envelope" :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"></Button>
 						</div>
 					</div>
 				</div>
@@ -84,14 +86,18 @@ export default {
     productService: null,
     created() {
         this.productService = new ProductService();
-
     },
     mounted() {
         this.productService.getProducts().then(data => this.products = data);
-		Api.getAllProperties().then(response => this.properties = response.data);
+		Api.getAllProperties().then(response  => {
+			console.log(response.data)
+			this.properties = response.data
+			});
+		console.log(this.properties);
     },
     methods: {
         onSortChange(event){
+			console.log(this.formatAsCurrency(10351));
             const value = event.value.value;
             const sortValue = event.value;
 
@@ -105,7 +111,11 @@ export default {
                 this.sortField = value;
                 this.sortKey = sortValue;
             }
-        }
+        },
+		formatAsCurrency:  function(value) {
+			var number = parseFloat(value).toLocaleString('pt-BR',{ style: 'currency', currency: 'BRL' });
+  			return number;
+		}
     }
 }
 </script>
