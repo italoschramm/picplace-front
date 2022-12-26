@@ -66,7 +66,6 @@
 </template>
 
 <script>
-import ProductService from './ProductService';
 import Api from '../../api/back-api'
 
 export default {
@@ -84,11 +83,7 @@ export default {
         }
     },
     productService: null,
-    created() {
-        this.productService = new ProductService();
-    },
     mounted() {
-        this.productService.getProducts().then(data => this.products = data);
 		Api.getAllProperties().then(response  => {
 			console.log(response.data)
 			this.properties = response.data

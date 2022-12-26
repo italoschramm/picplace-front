@@ -1,25 +1,24 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
     <div class=".tabmenudemo-content">
         <div class="container">
             <div class="box">
+                <div class="msg-error">
+                    <Message severity="error" :key="id" v-show="showError == 'none' ? false : true">{{ messageError}}</Message>
+                </div>
                 <div class="div-item">
                     <span class="p-float-label">
-                        <InputText id="username" type="text" v-model="value2" />
+                        <InputText id="username" type="text" v-model="credentials.username" />
                         <label for="username">Usuário</label>
                     </span>
                 </div>
                 <div class="div-item">
                     <span class="p-float-label">
-                        <Password v-model="value3" toggleMask :feedback="false"></Password>
+                        <Password v-model="credentials.password" toggleMask :feedback="false"></Password>
                         <label for="password">Senha</label>
                     </span>
                 </div>
                 <div class="div-item">
-                    <Button label="Entrar" />
+                    <Button label="Entrar" @click="login()"/>
                 </div>
                 <div class="div-link">
                     <Button label="Esqueci minha senha" class="p-button-link" />
@@ -34,17 +33,59 @@
 </template>
 
 <script>
+import auth from '@/api/auth';
+import http from '@/api/back-api';
+import router from '../router/index';
+import axios from 'axios';
+
+const AXIOS = axios.create({
+    baseURL: 'http://localhost:8090',
+    timeout: 50000
+  });
+
 export default {
+    name: 'App',
     data() {
         return {
-            value1: null,
-            value2: null,
-            value3: null,
-            value4: null,
-            value5: 'PrimeVue'
+            credentials: {
+                          username: '',
+                          password: ''
+                        },
+             id : 1,
+             showError : 'none',
+             messageError : ""
         }
-    }
+        
+    },
+    methods: {
+        async login(){
+            var credentials = {
+                                username: this.credentials.username,
+                                password: this.credentials.password
+            }
+            
+                await http.login(credentials).then(response => {
+                    var loginData = {
+                                    id_token: response.data.token,
+                                    authorizations: response.data.user.authorizations
+
+                    }
+                    auth.saveLogin(loginData);
+                    router.push('/advertise')
+                }).catch ((error)=> {
+                    var message = error.message
+                    console.log("Message: " + message)
+                    if(message.toString().indexOf('403') > -1)
+                        this.messageError = "Login e senha inválidos"
+                    else {
+                        this.messageError = "Erro desconhecido."
+                    }
+                    this.showError = 'block'; 
+                });             
+        }
+    }   
 }
+
 </script>
 
 <style scoped lang="scss">

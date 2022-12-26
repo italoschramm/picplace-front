@@ -3,6 +3,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
+import { createPinia } from 'pinia'
+
 import PrimeVue from 'primevue/config'
 import TabMenu from 'primevue/tabmenu';
 import "primeflex/primeflex.css";
@@ -105,7 +107,15 @@ import TreeTable from 'primevue/treetable';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
 import VirtualScroller from 'primevue/virtualscroller';
 
+import auth from './api/auth';
+
 const app = createApp(App)
+
+const pinia = createPinia();
+
+auth.checkAuth()
+
+app.use(pinia)
 
 app.use(router);
 

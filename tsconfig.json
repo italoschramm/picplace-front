@@ -1,4 +1,9 @@
+
 {
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "allowJs": true
+  },
   "files": [],
   "references": [
     {
@@ -9,6 +14,6 @@
     },
     {
       "path": "./tsconfig.vitest.json"
-    }
+    },
   ]
 }

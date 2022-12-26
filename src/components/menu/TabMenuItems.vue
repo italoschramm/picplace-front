@@ -32,7 +32,7 @@ export default {
                 },
                 {
                     label: 'Anuncie',
-                    to: "/login"
+                    to: "/advertise"
                 },
                 {
                     label: 'Sobre',

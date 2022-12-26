@@ -31,7 +31,7 @@ export default {
             'Authorization': localStorage.getItem('id_token')}
         }
     },
-    login(login){
+    login(login) {
         return AXIOS.post('/login', login);
     },
     getUser(userId) {
