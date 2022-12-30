@@ -115,11 +115,11 @@ const pinia = createPinia();
 
 auth.checkAuth()
 
+app.use(ToastService);
 app.use(pinia)
-
 app.use(router);
-
 app.use(PrimeVue);
+
 app.component('TabMenu', TabMenu);
 app.component('Button', Button);
 app.directive('tooltip', Tooltip);

@@ -34,17 +34,26 @@ export default {
     login(login) {
         return AXIOS.post('/login', login);
     },
+    saveUser(user) {
+        return AXIOS.post('/user/save', user);
+    },
     getUser(userId) {
         return AXIOS.get(`/user/` + userId);
     },
     getAllProperties(){
         return AXIOS.get('/property/getAllActives');
     },
-    getListLanguagesActive(){
-        return AXIOS.get('/language/listActiveLanguages', this.getHeaders());
+    getPropertyTypesActives(){
+        return AXIOS.get('/propertyType/getAllActives', this.getHeaders());
     },
-    registerLevel(level){
-        return AXIOS.post('/level/register', level, this.getHeadersPost());
+    getActivesByProductTypeId(idPropertyType){
+        return AXIOS.get('/propertyTypeCategory/getActivesByProductTypeId/' + idPropertyType, this.getHeaders());
+    },
+    getTransactionActives(){
+        return AXIOS.get('/transactionType/getAllActives', this.getHeaders());
+    },
+    saveProperty(property){
+        return AXIOS.post('/property/save', property, this.getHeadersPost());
     },
     deleteLanguage(idLanguage){
         return AXIOS.delete('/language/delete/' + idLanguage, this.getHeadersPost());

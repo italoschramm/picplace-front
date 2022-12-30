@@ -1,9 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
-import AdvertiseView from '../views/AdvertiseView.vue'
 import AboutView from '@/views/AboutView.vue'
 import Auth from '../api/auth'
+import RegisterView from '@/views/RegisterView.vue'
+import PropertyData from '@/views/stepsAdvertise/PropDataStepView.vue'
+import PropertyData2 from '@/views/stepsAdvertise/PropDataStep2View.vue'
+import Advertise from '@/views/stepsAdvertise/AdvertiseStepsView.vue'
+import PropertyData3 from '@/views/stepsAdvertise/PropDataStep3View.vue'
+import PropertyData4 from '@/views/stepsAdvertise/PropDataStep4View.vue'
+import PropertyData5 from '@/views/stepsAdvertise/PropDataStep5View.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,11 +30,47 @@ const router = createRouter({
       component: LoginView
     },
     {
+      path: '/register',
+      name: 'registerView',
+      component: RegisterView
+    },
+    {
       path: '/advertise',
-      name: 'advertise',
-      component: AdvertiseView,
-      meta: {requiresAuth: true}
+      component: Advertise,
+      children : [
+        {
+          path: '/stepPropertyData',
+          name: 'stepPropertyData',
+          component: PropertyData,
+          meta: {requiresAuth: true}
+        },
+        {
+          path: '/stepPropertyData2',
+          name: 'stepPropertyData2',
+          component: PropertyData2,
+          meta: {requiresAuth: true}
+        },
+        {
+          path: '/stepPropertyData3',
+          name: 'stepPropertyData3',
+          component: PropertyData3,
+          meta: {requiresAuth: true}
+        },
+        {
+          path: '/stepPropertyData4',
+          name: 'stepPropertyData4',
+          component: PropertyData4,
+          meta: {requiresAuth: true}
+        },
+        {
+          path: '/stepPropertyData5',
+          name: 'stepPropertyData5',
+          component: PropertyData5,
+          meta: {requiresAuth: true}
+        }
+      ]
     }
+    
   ]
 })
 

@@ -23,20 +23,12 @@ export default {
                     to: "/"
                 },
                 {
-                    label: 'Alugue',
-                    to: "/about"
-                },
-                {
-                    label: 'Compre',
-                    to: "/about2"
-                },
-                {
                     label: 'Anuncie',
                     to: "/advertise"
                 },
                 {
                     label: 'Sobre',
-                    to: "/about4"
+                    to: "/about"
                 }
             ]
         }

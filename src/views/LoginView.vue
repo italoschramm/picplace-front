@@ -21,10 +21,10 @@
                     <Button label="Entrar" @click="login()"/>
                 </div>
                 <div class="div-link">
-                    <Button label="Esqueci minha senha" class="p-button-link" />
+                    <Button label="Esqueci minha senha" class="p-button-link"/>
                 </div>
                 <div class="div-link">
-                    <Button label="Cadastre-se aqui" class="p-button-link" />
+                    <Button label="Cadastre-se aqui" class="p-button-link" @click="register()"/>
                 </div>
             </div>
         </div>
@@ -82,6 +82,9 @@ export default {
                     }
                     this.showError = 'block'; 
                 });             
+        },
+        register(){
+            router.push('/register')
         }
     }   
 }
