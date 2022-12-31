@@ -146,11 +146,11 @@ export default {
         nextPage() {
             this.submitted = true;
             if (this.validateForm() ) {
-                this.$emit('next-page', {formData: {zip: this.formData.zip, address: this.formData.address, number: this.formData.number, complement: this.formData.complement,
+                this.$emit('next-page', {formData: {zipcode: this.formData.zip, address: this.formData.address, number: this.formData.number, complement: this.formData.complement,
                                                     district: this.formData.district, state: this.formData.state, city: this.formData.city, bedrooms: this.selectBedrooms,
                                                     suites: this.selectSuites, parkingSpaces: this.selectParkingSpaces, usableArea: this.usableArea, totalArea: this.totalArea,
                                                     description: this.description, idTransactionType: this.selectTransaction.id, idPropertyType: this.selectPropertyType.id,
-                                                    idCategory: this.selectCategory.id, price: this.price
+                                                    idPropertyTypeCategory: this.selectCategory.id, salePrice: this.price
                                                     }, pageIndex: 1});
             }
         },

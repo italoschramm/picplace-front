@@ -57,7 +57,9 @@ import http from '@/api/back-api.js';
 export default {
     data(){
         return {
-            message: ''
+            message: '',
+            pictures: [],
+            property:[]
         }
     },
 
@@ -65,31 +67,66 @@ export default {
         formData: Object
     },
     created(){
-        console.log(this.formObject)
+
     },
     methods: {
+        convertFilesToBase64(){
+            let p = Promise.resolve();
+            p = p.then(async () => this.readAsDataURL(this.formData.files).then(result => {
+                    if (result){
+                        this.saveProperty();   
+                    } 
+            }));
+        }, 
+        readAsDataURL: function(files) {
+            var i = 0;
+            return new Promise((resolve, reject) => {
+                for(let file of files){
+                    const fr = new FileReader();
+                    fr.onerror = reject;
+                    fr.onload = () => {
+                        this.pictures[i] = fr.result.split(',')[1];;
+                        console.log(this.pictures)
+                        i++
+                        console.log(files.length)
+                        if(files.length == i){
+                            resolve(true);
+                        }
+                    }
+                    fr.readAsDataURL(file);
+                    
+                }
+            });
+        },
         prevPage() {
             this.$emit('prev-page', {pageIndex: 3});
         },
-        complete() {
-            this.saveProperty();
-                                                    
+        async complete() {
+            this.pictures = [];
+            await this.convertFilesToBase64(); 
+            //this.$emit('next-page', {formData: {aaa: ''}, pageIndex: 3});                                            
         },
         formatAsCurrency:  function(value) {
 			var number = parseFloat(value).toLocaleString('pt-BR',{ style: 'currency', currency: 'BRL' });
   			return number;
 		},
         async saveProperty(){
-            console.log(this.formData)
-            await http.saveProperty(this.formData).then(response => {
-                console.log(response)
+            this.property = {zipcode: this.formData.zipcode, address: this.formData.address, number: this.formData.number, complement: this.formData.complement,
+                                                    district: this.formData.district, state: this.formData.state, city: this.formData.city, bedrooms: this.formData.bedrooms,
+                                                    suites: this.formData.suites, parkingSpaces: this.formData.parkingSpaces, usableArea: this.formData.usableArea, totalArea: this.formData.totalArea,
+                                                    description: this.formData.description, idTransactionType: this.formData.idTransactionType, idPropertyType: this.formData.idPropertyType,
+                                                    idPropertyTypeCategory: this.formData.idPropertyTypeCategory, salePrice: this.formData.salePrice, pictures: this.pictures, active: true
+                            }
+            
+            await http.saveProperty(this.property).then(response => {
+                console.log(response.data)
                 this.$emit('next-page', {formData: {aaa: ''}, pageIndex: 3});
             }).catch(error=> {
                 console.log(error)
                 alert(error.message)
-                /* console.log(error)
-                this.message = error.message;
-                this.showError = 'block';  */
+                //console.log(error)
+                //this.message = error.message;
+                //this.showError = 'block';  
             }); 
         }
     }

@@ -47,7 +47,7 @@
 							<span :class="'product-badge status-'">{{slotProps.data.city}} - {{slotProps.data.state}}</span>
 						</div>
 						<div class="product-grid-item-content">
-							<img :src="slotProps.data.pictures[0].code" :alt="slotProps.data.name" width="350" height="300"/>
+							<img @click="goDetails(slotProps.data.id)" :src="slotProps.data.pictures[0].code" :alt="slotProps.data.name" width="350" height="300"/>
 							<!-- <div class="product-name">{{slotProps.data.name}}</div> -->
 							<div class="product-name">{{slotProps.data.district}}</div>
 							<!-- <div class="product-description">{{slotProps.data.description}}</div> -->
@@ -56,7 +56,7 @@
 						</div>
 						<div class="product-grid-item-bottom">
 							<span class="product-price">{{this.formatAsCurrency(slotProps.data.salePrice)}}</span>
-							<Button icon="pi pi-envelope" :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"></Button>
+							<Button @click="goDetails(slotProps.data.id)" icon="pi pi-envelope" :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"></Button>
 						</div>
 					</div>
 				</div>
@@ -67,11 +67,14 @@
 
 <script>
 import Api from '../../api/back-api'
+import Router from '@/router/index.ts'
+import PropView from '@/views/Propview.vue'
 
 export default {
     data() {
         return {
             properties: null,
+			property: null,
             layout: 'grid',
             sortKey: null,
             sortOrder: null,
@@ -82,10 +85,12 @@ export default {
             ]
         }
     },
+	components: {
+		PropView
+	},
     productService: null,
     mounted() {
 		Api.getAllProperties().then(response  => {
-			console.log(response.data)
 			this.properties = response.data
 			});
 		console.log(this.properties);
@@ -110,6 +115,10 @@ export default {
 		formatAsCurrency:  function(value) {
 			var number = parseFloat(value).toLocaleString('pt-BR',{ style: 'currency', currency: 'BRL' });
   			return number;
+		},
+		goDetails(id){
+			//console.log(this.property)
+			this.$router.push({name: 'prop', params: {idProperty: id}})
 		}
     }
 }

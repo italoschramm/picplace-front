@@ -10,6 +10,7 @@ import Advertise from '@/views/stepsAdvertise/AdvertiseStepsView.vue'
 import PropertyData3 from '@/views/stepsAdvertise/PropDataStep3View.vue'
 import PropertyData4 from '@/views/stepsAdvertise/PropDataStep4View.vue'
 import PropertyData5 from '@/views/stepsAdvertise/PropDataStep5View.vue'
+import PropView from '@/views/PropView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,12 @@ const router = createRouter({
       path: '/register',
       name: 'registerView',
       component: RegisterView
+    },
+    {
+      path: '/prop/:idProperty',
+      name: 'prop',
+      component: PropView,
+      props: true
     },
     {
       path: '/advertise',

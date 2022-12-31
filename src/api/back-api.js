@@ -55,6 +55,9 @@ export default {
     saveProperty(property){
         return AXIOS.post('/property/save', property, this.getHeadersPost());
     },
+    getPropertyById(idProperty){
+        return AXIOS.get('/property/getById/' + idProperty, this.getHeaders());
+    },
     deleteLanguage(idLanguage){
         return AXIOS.delete('/language/delete/' + idLanguage, this.getHeadersPost());
     },

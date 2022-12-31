@@ -107,9 +107,14 @@ import TreeTable from 'primevue/treetable';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
 import VirtualScroller from 'primevue/virtualscroller';
 
+import mitt from 'mitt';
+const emitter = mitt();
+
 import auth from './api/auth';
 
 const app = createApp(App)
+
+app.config.globalProperties.emitter = emitter;
 
 const pinia = createPinia();
 

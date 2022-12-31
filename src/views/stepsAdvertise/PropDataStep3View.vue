@@ -11,7 +11,7 @@
             <Toast />
             <template v-slot:content>
                 <div class="field">
-                <FileUpload name="demo[]" url="https://www.primefaces.org/upload.php"  @upload="onAdvancedUpload($event)" :multiple="true" accept="image/*" :maxFileSize="1000000">
+                <FileUpload name="demo[]" url="https://www.primefaces.org/upload.php" @upload="upload($event)" @removeUploadedFile="removeUploadedFile($event)" :multiple="true" accept="image/*" :maxFileSize="1000000">
                     <template #content>
                         <ul v-if="uploadedFiles && uploadedFiles[0]">
                             <li v-for="file of uploadedFiles[0]" :key="file">{{ file.name }} - {{ file.size }} bytes</li>
@@ -42,8 +42,10 @@ import http from '@/api/back-api.js';
 export default {
     data () {
         return {
+            imageBase64: '',
             uploadedFiles: [],
             files: [],
+            pictures: [],
             totalSize: 0,
             totalSizePercent: 0,
             submitted: false,
@@ -51,10 +53,10 @@ export default {
         }
     },
     props: {
-            formData: Object
+        formData: Object
     },
     created(){
-        
+      console.log(this.formData)  
     },
     methods: {
         onRemoveTemplatingFile(file, onFileRemove, index) {
@@ -68,21 +70,24 @@ export default {
             this.totalSizePercent = 0;
         },
         onSelectedFiles(event) {
-            console.log('files: ' + event.files)
-            console.log('files: ' + event.uploadedFiles)
             this.files = event.files;
             this.files.forEach((file) => {
                 this.totalSize += parseInt(this.formatSize(file.size));
             });
             
         },
-        onAdvancedUpload(event) {
+        upload(event) {
             this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
             this.files = event.files;
-            console.log(this.files)
         },
-        uploaderEvent(event){
-            console.log('Aqui ok')
+        removeUploadedFile(event){
+            for (var i = this.files.length - 1; i >= 0; --i) {
+                if (this.files[i].objectURL == event.file.objectURL) {
+                    this.files.splice(i,1);
+                    return;
+                }
+            } 
+            
         },
         uploadEvent(callback) {
             this.totalSizePercent = 100;
@@ -111,16 +116,16 @@ export default {
         nextPage() {
             this.submitted = true;
             if (this.validateForm() ) {
-                this.$emit('next-page', {formData: {zip: this.formData.zip, address: this.formData.address, number: this.formData.number, complement: this.formData.complement,
+                this.$emit('next-page', {formData: {zipcode: this.formData.zipcode, address: this.formData.address, number: this.formData.number, complement: this.formData.complement,
                                                     district: this.formData.district, state: this.formData.state, city: this.formData.city, bedrooms: this.formData.bedrooms,
                                                     suites: this.formData.suites, parkingSpaces: this.formData.parkingSpaces, usableArea: this.formData.usableArea, totalArea: this.formData.totalArea,
-                                                    description: this.formData.description, transaction: this.formData.transaction, propertyType: this.formData.propertyType,
-                                                    category: this.formData.category, price: this.formData.price, pictures: this.formData.files, active: true
+                                                    description: this.formData.description, idTransactionType: this.formData.idTransactionType, idPropertyType: this.formData.idPropertyType,
+                                                    idPropertyTypeCategory: this.formData.idPropertyTypeCategory, salePrice: this.formData.salePrice, files: this.files, active: true
                                                     }, pageIndex: 2});
             }
         },
         validateForm() {
-            if (!this.files.length > 0)
+            if (this.files.length == 0)
                 this.validationErrors['files'] = true;
             else
                 delete this.validationErrors['files'];
