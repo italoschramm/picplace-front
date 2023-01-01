@@ -10,6 +10,12 @@ const AXIOS = axios.create({
         'Content-Type': 'application/json',
         'Authorization': localStorage.getItem('id_token')
     }
+    }
+
+    var headersPostWithoutToken = {
+        headers : {
+            'Content-Type': 'application/json'
+        }
 }
 
 var headersGet = {
@@ -29,6 +35,11 @@ export default {
         return {headers :
             {'Content-Type': 'application/json',
             'Authorization': localStorage.getItem('id_token')}
+        }
+    },
+    getHeadersPostWithouToken(){
+        return {headers :
+            {'Content-Type': 'application/json'}
         }
     },
     login(login) {
@@ -58,44 +69,8 @@ export default {
     getPropertyById(idProperty){
         return AXIOS.get('/property/getById/' + idProperty, this.getHeaders());
     },
-    deleteLanguage(idLanguage){
-        return AXIOS.delete('/language/delete/' + idLanguage, this.getHeadersPost());
-    },
-    deleteLevel(idLevel){
-        return AXIOS.delete('/level/delete/' + idLevel, this.getHeadersPost());
-    },
-    deleteSubject(idSubject){
-        return AXIOS.delete('/subject/delete/' + idSubject, this.getHeadersPost());
-    },
-    deleteQuestion(idQuestion){
-        return AXIOS.delete('/question/delete/' + idQuestion, this.getHeadersPost());
-    },
-    deleteAnswer(idAnswer){
-        return AXIOS.delete('/answer/delete/' + idAnswer, this.getHeadersPost());
-    },
-    registerLanguage(language){
-        return AXIOS.post('/language/register', language, this.getHeadersPost());
-    },
-    getListQuestionActive(){
-        return AXIOS.get('/question/listQuestionsActive', this.getHeaders());
-    },
-    getListAnswerActive(){
-        return AXIOS.get('/answer/listAnswersActive', this.getHeaders());
-    },
-    getListSubjectsActive(){
-        return AXIOS.get('/subject/listSubjectsActive', this.getHeaders());
-    },
-    getListTypeQuestionsActive(){
-        return AXIOS.get('/typeQuestion/listTypeQuestionsActive', this.getHeaders());
-    },
-    registerSubject(subject){
-        return AXIOS.post('/subject/register', subject, this.getHeadersPost());
-    },
-    registerQuestion(question){
-        return AXIOS.post('/question/register', question, this.getHeadersPost());
-    },
-    registerAnswer(answer){
-        return AXIOS.post('/answer/register', answer, this.getHeadersPost());
+    saveContact(contact){
+        return AXIOS.post('/contact/save', contact, this.getHeadersPostWithouToken());
     },
     getSecured(user, password) {
         return AXIOS.get(`/secured/`,{

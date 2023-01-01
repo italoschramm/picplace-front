@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import Galleria from '@/components/galleria/Galleria.vue'
+import Splitter from '@/components/details/SplitterVue.vue'
+
 </script>
 
 <template>
-    <Galleria/>
-
-    
+        <Splitter />
 </template>
+
+<style>
+
+
+</style>

@@ -1,13 +1,7 @@
 <template>
-    <!-- <h1>I'm alive</h1>
-    <div style="padding: .5rem 0">
-        <Button icon="pi pi-minus" @click="prev" class="p-button-secondary" />
-        <Button icon="pi pi-plus" @click="next" class="p-button-secondary" style="margin-left: .5rem" />
-    </div> -->
-
-    <Galleria :value="images" v-model:activeIndex="activeIndex" :responsiveOptions="responsiveOptions" :numVisible="5" containerStyle="max-width: 640px">
+    <Galleria :value="images" v-model:activeIndex="activeIndex" :numVisible="3" containerStyle="max-width: 100%">
         <template #item="slotProps">
-            <img :src="slotProps.item.code"  style="width: 100%" alt="Image" width="250" height="400" />
+            <img :src="slotProps.item.code" style="max-width: 100%; max-height: 100%;" alt="Image" />
             <!-- :alt="slotProps.item.alt" -->
         </template>
         <template #thumbnail="slotProps">
@@ -26,7 +20,6 @@ export default {
     data() {
         return {
             images: [],
-            property: null,
             idProperty: null,
             activeIndex: 2,
 			responsiveOptions: [
@@ -46,25 +39,25 @@ export default {
         }
         
     },
+    props:{
+        property: Object
+    },
+    watch: { 
+        property: function(newVal, oldVal) { // watch it
+            this.getPictures()
+        }
+    },
     galleriaService: null,
 	created() {
-        this.getProperty();
+
 	},
     methods: {
-        async getProperty(){
-            this.idProperty = this.$route.params.idProperty;
-            await http.getPropertyById(this.idProperty).then(response  => {
-			    this.property = response.data
-                var i = 0;
-                for(let pic of this.property.pictures){
-                    this.images[i] = pic;
-                    i++;
-                    console.log(this.images)
-                }
-		    }).catch(error => {
-                console.log(error);
-            });
-		    console.log(this.properties);
+        getPictures(){
+            var i = 0;
+            for(let pic of this.property.pictures){
+                this.images[i] = pic;
+                i++;
+            }
         },
         next() {
             this.activeIndex = (this.activeIndex === this.images.length - 1) ? 0 : this.activeIndex + 1;

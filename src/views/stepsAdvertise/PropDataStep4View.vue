@@ -59,7 +59,9 @@ export default {
         return {
             message: '',
             pictures: [],
-            property:[]
+            property:[],
+            image: '',
+            base64ResizedImage: ''
         }
     },
 
@@ -85,10 +87,9 @@ export default {
                     const fr = new FileReader();
                     fr.onerror = reject;
                     fr.onload = () => {
-                        this.pictures[i] = fr.result.split(',')[1];;
-                        console.log(this.pictures)
+                        this.pictures[i] = fr.result.split(',')[1];
+                        //this.resizeImage(this.pictures[i])
                         i++
-                        console.log(files.length)
                         if(files.length == i){
                             resolve(true);
                         }
@@ -102,8 +103,10 @@ export default {
             this.$emit('prev-page', {pageIndex: 3});
         },
         async complete() {
-            this.pictures = [];
-            await this.convertFilesToBase64(); 
+            this.pictures = this.formData.files;
+            console.log(this.pictures)
+            this.saveProperty();   
+            //await this.convertFilesToBase64(); 
             //this.$emit('next-page', {formData: {aaa: ''}, pageIndex: 3});                                            
         },
         formatAsCurrency:  function(value) {

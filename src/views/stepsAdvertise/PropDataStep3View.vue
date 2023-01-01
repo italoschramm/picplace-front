@@ -79,6 +79,99 @@ export default {
         upload(event) {
             this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
             this.files = event.files;
+            this.convertImages(0);
+        },
+        convertImages(index){
+            let p = Promise.resolve();
+            p = p.then(async () => this.loadImage(this.files[index]).then(result => {
+                this.files[index] = this.resizeImage2(result);
+                if(this.files.length > index + 1)
+                    this.convertImages(index + 1)
+            })).catch(e => {
+                console.log(e);
+            });
+        },
+        loadImage: function(file){
+            let image = new Image();
+            return new Promise((resolve, reject) => {
+                image.src = file.objectURL 
+                image.onload = () => resolve(image);
+                image.onerror = () => reject(image);
+            });
+        },
+        resizeImage2: function(img) {
+            var canvas = document.createElement("canvas");
+            var context = canvas.getContext("2d");
+            var width = 680;
+            var height = 430;
+
+            canvas.height=height;
+            canvas.width=width;
+            context.drawImage(img, 0, 0);
+            return canvas.toDataURL('image/jpeg', 0.85).split(',')[1];
+        },
+        resizeImage: function(img){
+            var width = 680;
+            var height = 430;
+            let outputCanvas = document.createElement('canvas');
+            let outputCanvasContext = outputCanvas.getContext("2d");
+
+                // Make sure the width and height preserve the original aspect ratio and adjust if needed
+                if(img.height > img.width) {
+                    width = Math.floor(height * (img.width / img.height));
+                }else {
+                    height = Math.floor(width * (img.height / img.width));
+                }
+
+                let resizingCanvas = document.createElement('canvas');
+                let resizingCanvasContext = resizingCanvas.getContext("2d");
+
+                // Start with original image size
+                resizingCanvas.width = img.width;
+                resizingCanvas.height = img.height;
+
+
+                // Draw the original image on the (temp) resizing canvas
+                resizingCanvasContext.drawImage(img, 0, 0, resizingCanvas.width, resizingCanvas.height);
+
+                let curImageDimensions = {
+                    width: Math.floor(img.width),
+                    height: Math.floor(img.height)
+                };
+
+                let halfImageDimensions = {
+                    width: null,
+                    height: null
+                };
+
+                // Quickly reduce the dize by 50% each time in few iterations until the size is less then
+                // 2x time the target size - the motivation for it, is to reduce the aliasing that would have been
+                // created with direct reduction of very big image to small image
+                while (curImageDimensions.width * 0.5 > width) {
+                    // Reduce the resizing canvas by half and refresh the image
+                    halfImageDimensions.width = Math.floor(curImageDimensions.width * 0.5);
+                    halfImageDimensions.height = Math.floor(curImageDimensions.height * 0.5);
+
+                    resizingCanvasContext.drawImage(resizingCanvas, 0, 0, curImageDimensions.width, curImageDimensions.height,
+                        0, 0, halfImageDimensions.width, halfImageDimensions.height);
+
+                    curImageDimensions.width = halfImageDimensions.width;
+                    curImageDimensions.height = halfImageDimensions.height;
+                }
+
+                // Now do final resize for the resizingCanvas to meet the dimension requirments
+                // directly to the output canvas, that will output the final image
+
+                outputCanvas.width = width;
+                outputCanvas.height = height;
+
+                outputCanvasContext.drawImage(resizingCanvas, 0, 0, curImageDimensions.width, curImageDimensions.height,
+                    0, 0, width, height);
+
+                // output the canvas pixels as an image. params: format, quality
+                return outputCanvas.toDataURL('image/jpeg', 0.85).split(',')[1];
+
+                // TODO: Call method to do something with the resize image
         },
         removeUploadedFile(event){
             for (var i = this.files.length - 1; i >= 0; --i) {
