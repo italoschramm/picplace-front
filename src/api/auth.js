@@ -4,6 +4,7 @@ import url from './back-api';
 export default {
 
   user: {
+    id: 0,
     authenticated: false,
     authorizations : []
   },
@@ -26,14 +27,18 @@ export default {
   saveLogin(login){
     localStorage.setItem('id_token', login.id_token);
     localStorage.setItem('authorizations', login.authorizations);
+    localStorage.setItem('idUser', login.id)
     this.user.authenticated = true  
     this.user.authorizations = login.authorizations;
+    this.user.id = login.id;
   },
 
   logout() {
     localStorage.removeItem('id_token')
     localStorage.removeItem('authorizations')
+    localStorage.removeItem('idUser')
     this.user.authenticated = false
+    this.user.id = 0
     router.push('/Login')
   },
 
@@ -50,6 +55,9 @@ export default {
     }
   },
 
+  getUserId(){
+    return localStorage.getItem('idUser');
+  },
 
   getAuthHeader() {
     return {

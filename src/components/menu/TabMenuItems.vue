@@ -27,6 +27,10 @@ export default {
                     to: "/advertise"
                 },
                 {
+                    label: 'Perfil',
+                    to: "/profile"
+                },
+                {
                     label: 'Sobre',
                     to: "/about"
                 }

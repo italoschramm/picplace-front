@@ -24,6 +24,18 @@
         <Button type="submit" label="Enviar" class="mt-2" />
     </form>
     <Message :severity="severity" v-show="showMessage == 'none' ? false : true">{{ message }}</Message>
+    <div class="share">
+        <ShareNetwork
+            network="whatsapp"
+            :url="currentUrl"
+            title=""
+            description=""
+            quote=""
+            hashtags="">
+            <img src='@/assets/whatsapp.svg' width="50" height="50"/> 
+        </ShareNetwork>
+    </div>
+     
     </div>
 </template>
 
@@ -42,7 +54,8 @@ export default {
             message: '',
             showMessage : 'none',
             severity: 'success',
-            contact: null
+            contact: null,
+            currentUrl: ''
         }
         
     },
@@ -53,6 +66,9 @@ export default {
                 email
             }
         }
+    },
+    created(){
+        this.currentUrl = window.location.href;
     },
     methods:{
         async submit(){
@@ -106,6 +122,10 @@ export default {
 p {
     line-height: 1.5;
     margin: 0;
+}
+
+.share{
+    margin-top: 25px;
 }
 
 .div-item{

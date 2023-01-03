@@ -67,7 +67,8 @@ export default {
                 await http.login(credentials).then(response => {
                     var loginData = {
                                     id_token: response.data.token,
-                                    authorizations: response.data.user.authorizations
+                                    authorizations: response.data.user.authorizations,
+                                    id: response.data.user.id
 
                     }
                     auth.saveLogin(loginData);

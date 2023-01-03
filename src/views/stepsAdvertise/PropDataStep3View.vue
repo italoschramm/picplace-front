@@ -107,7 +107,12 @@ export default {
 
             canvas.height=height;
             canvas.width=width;
-            context.drawImage(img, 0, 0);
+            context.drawImage(img, 0, 0, width, height);
+
+            //var x = (context.canvas.width - img.width * width) / 2;
+            //var y = (context.canvas.height - img.height * height) / 2;
+            //context.drawImage(img, x, y, img.width * width, img.height * height); 
+
             return canvas.toDataURL('image/jpeg', 0.85).split(',')[1];
         },
         resizeImage: function(img){
@@ -213,7 +218,7 @@ export default {
                                                     district: this.formData.district, state: this.formData.state, city: this.formData.city, bedrooms: this.formData.bedrooms,
                                                     suites: this.formData.suites, parkingSpaces: this.formData.parkingSpaces, usableArea: this.formData.usableArea, totalArea: this.formData.totalArea,
                                                     description: this.formData.description, idTransactionType: this.formData.idTransactionType, idPropertyType: this.formData.idPropertyType,
-                                                    idPropertyTypeCategory: this.formData.idPropertyTypeCategory, salePrice: this.formData.salePrice, files: this.files, active: true
+                                                    idPropertyTypeCategory: this.formData.idPropertyTypeCategory, price: this.formData.price, condominiumFEE: this.condominiumFEE, files: this.files, active: true
                                                     }, pageIndex: 2});
             }
         },

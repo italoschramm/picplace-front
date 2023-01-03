@@ -106,6 +106,7 @@ import TreeSelect from 'primevue/treeselect';
 import TreeTable from 'primevue/treetable';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
 import VirtualScroller from 'primevue/virtualscroller';
+import VueSocialSharing from 'vue-social-sharing'
 
 import mitt from 'mitt';
 const emitter = mitt();
@@ -124,6 +125,7 @@ app.use(ToastService);
 app.use(pinia)
 app.use(router);
 app.use(PrimeVue);
+app.use(VueSocialSharing);
 
 app.component('TabMenu', TabMenu);
 app.component('Button', Button);

@@ -57,6 +57,10 @@
                         <InputNumber id="price" v-model="price" mode="currency" currency="BRL" :class="{'p-invalid': validationErrors.price && submitted}" />
                         <small v-show="validationErrors.price && submitted" class="p-error">Valor é obrigatório </small>
                     </div>
+                    <div class="field">
+                        <label for="condominiumFEE">Taxa de Condomínio</label>
+                        <InputNumber id="condominiumFEE" v-model="condominiumFEE" mode="currency" currency="BRL" />
+                    </div>
                 </div>
             </template>
             <template v-slot:footer>
@@ -93,6 +97,7 @@ export default {
             selectCategory: null,
             nameType: 'Valor',
             price: 0,
+            condominiumFEE: 0,
             submitted: false,
             validationErrors: {}
         }
@@ -150,7 +155,7 @@ export default {
                                                     district: this.formData.district, state: this.formData.state, city: this.formData.city, bedrooms: this.selectBedrooms,
                                                     suites: this.selectSuites, parkingSpaces: this.selectParkingSpaces, usableArea: this.usableArea, totalArea: this.totalArea,
                                                     description: this.description, idTransactionType: this.selectTransaction.id, idPropertyType: this.selectPropertyType.id,
-                                                    idPropertyTypeCategory: this.selectCategory.id, salePrice: this.price
+                                                    idPropertyTypeCategory: this.selectCategory.id, salePrice: this.price, condominiumFEE: this.condominiumFEE
                                                     }, pageIndex: 1});
             }
         },

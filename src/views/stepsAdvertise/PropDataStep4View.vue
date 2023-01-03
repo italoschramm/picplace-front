@@ -118,7 +118,7 @@ export default {
                                                     district: this.formData.district, state: this.formData.state, city: this.formData.city, bedrooms: this.formData.bedrooms,
                                                     suites: this.formData.suites, parkingSpaces: this.formData.parkingSpaces, usableArea: this.formData.usableArea, totalArea: this.formData.totalArea,
                                                     description: this.formData.description, idTransactionType: this.formData.idTransactionType, idPropertyType: this.formData.idPropertyType,
-                                                    idPropertyTypeCategory: this.formData.idPropertyTypeCategory, salePrice: this.formData.salePrice, pictures: this.pictures, active: true
+                                                    idPropertyTypeCategory: this.formData.idPropertyTypeCategory, price: this.formData.price, condominiumFEE: this.condominiumFEE, pictures: this.pictures, active: true
                             }
             
             await http.saveProperty(this.property).then(response => {

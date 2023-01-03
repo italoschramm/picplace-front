@@ -49,7 +49,7 @@ export default {
         return AXIOS.post('/user/save', user);
     },
     getUser(userId) {
-        return AXIOS.get(`/user/` + userId);
+        return AXIOS.get(`/user/getById/` + userId, this.getHeaders());
     },
     getAllProperties(){
         return AXIOS.get('/property/getAllActives');

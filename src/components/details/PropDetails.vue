@@ -70,7 +70,7 @@ export default {
             this.totalArea = this.property.totalArea;
             this.transactionType = this.transactionType.id
             this.propertyTypeCategory = this.property.propertyTypeCategory.description;
-            this.price = this.property.rentPrice;
+            this.price = this.property.price;
         },
         formatAsCurrency:  function(value) {
 			var number = parseFloat(value).toLocaleString('pt-BR',{ style: 'currency', currency: 'BRL' });

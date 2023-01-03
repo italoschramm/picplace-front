@@ -55,7 +55,7 @@
 							<!-- <Rating :modelValue="slotProps.data.rating" :readonly="true" :cancel="false"></Rating> -->
 						</div>
 						<div class="product-grid-item-bottom">
-							<span class="product-price">{{this.formatAsCurrency(slotProps.data.salePrice)}}</span>
+							<span class="product-price">{{this.formatAsCurrency(slotProps.data.price)}}</span>
 							<Button @click="goDetails(slotProps.data.id)" icon="pi pi-envelope" :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"></Button>
 						</div>
 					</div>
