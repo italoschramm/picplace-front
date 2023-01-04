@@ -69,8 +69,17 @@ export default {
     getPropertyById(idProperty){
         return AXIOS.get('/property/getById/' + idProperty, this.getHeaders());
     },
+    deleteproperty(idProperty){
+        return AXIOS.delete('/property/deleteById/' + idProperty, this.getHeaders());
+    },
+    getPropertyByIdCustomer(idCustomer){
+        return AXIOS.get('/property/getByIdCustomer/' + idCustomer, this.getHeaders());
+    },
     saveContact(contact){
         return AXIOS.post('/contact/save', contact, this.getHeadersPostWithouToken());
+    },
+    saveCustomer(customer){
+        return AXIOS.post('/customer/save', customer, this.getHeadersPostWithouToken());
     },
     getSecured(user, password) {
         return AXIOS.get(`/secured/`,{

@@ -12,6 +12,7 @@ import PropertyData4 from '@/views/stepsAdvertise/PropDataStep4View.vue'
 import PropertyData5 from '@/views/stepsAdvertise/PropDataStep5View.vue'
 import PropView from '@/views/PropView.vue'
 import ProfileView from '@/views/ProfileView.vue'
+import MyAdvertisesView from '@/views/MyAdvertisesView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,6 +47,12 @@ const router = createRouter({
       path: '/profile',
       name: 'profile',
       component: ProfileView,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/myAdvertises',
+      name: 'myAdvertises',
+      component: MyAdvertisesView,
       meta: {requiresAuth: true}
     },
     {

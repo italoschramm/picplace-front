@@ -126,6 +126,7 @@ app.use(pinia)
 app.use(router);
 app.use(PrimeVue);
 app.use(VueSocialSharing);
+app.use(ConfirmationService);
 
 app.component('TabMenu', TabMenu);
 app.component('Button', Button);

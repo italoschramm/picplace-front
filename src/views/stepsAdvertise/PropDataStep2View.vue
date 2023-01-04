@@ -155,7 +155,7 @@ export default {
                                                     district: this.formData.district, state: this.formData.state, city: this.formData.city, bedrooms: this.selectBedrooms,
                                                     suites: this.selectSuites, parkingSpaces: this.selectParkingSpaces, usableArea: this.usableArea, totalArea: this.totalArea,
                                                     description: this.description, idTransactionType: this.selectTransaction.id, idPropertyType: this.selectPropertyType.id,
-                                                    idPropertyTypeCategory: this.selectCategory.id, salePrice: this.price, condominiumFEE: this.condominiumFEE
+                                                    idPropertyTypeCategory: this.selectCategory.id, price: this.price, condominiumFEE: this.condominiumFEE
                                                     }, pageIndex: 1});
             }
         },
