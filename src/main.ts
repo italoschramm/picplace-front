@@ -107,6 +107,7 @@ import TreeTable from 'primevue/treetable';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
 import VirtualScroller from 'primevue/virtualscroller';
 import VueSocialSharing from 'vue-social-sharing'
+import "primeicons/primeicons.css"; //icons
 
 import mitt from 'mitt';
 const emitter = mitt();

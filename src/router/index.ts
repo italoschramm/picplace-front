@@ -56,6 +56,33 @@ const router = createRouter({
       meta: {requiresAuth: true}
     },
     {
+      path: '/instagramPicPlace',
+      name: 'instagramPicPlace',
+      beforeEnter() {                    
+        window.open("https://www.instagram.com/picplaceimoveis/", 
+        '_blank');
+      },
+      component: HomeView
+    },
+    {
+      path: '/facebookPicPlace',
+      name: 'facebookPicPlace',
+      beforeEnter() {                    
+        window.open("https://www.facebook.com/profile.php?id=100089163427584", 
+        '_blank');
+      },
+      component: HomeView
+    },
+    {
+      path: '/whatsappPicPlace',
+      name: 'whatsappPicPlace',
+      beforeEnter() {                    
+        window.open("https://api.whatsapp.com/send?phone=551189957008&text=Olá... Estou entrando em contato a partir do site picplace.", 
+        '_blank');
+      },
+      component: HomeView
+    },
+    {
       path: '/advertise',
       component: Advertise,
       children : [

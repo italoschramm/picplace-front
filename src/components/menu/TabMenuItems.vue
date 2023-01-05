@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="div-logo">
-            <img alt="Vue logo" class="logo-app" src="@/assets/quintoAndar.svg" width="184" height="25" />
+            <img alt="Vue logo" class="logo-app" src="@/assets/picplace.png" width="200" height="100" />
         </div>
         <div class="card">
             <TabMenu :model="items" />
@@ -63,7 +63,7 @@ export default {
   align-content: center;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 10px;
 } 
 
 </style>

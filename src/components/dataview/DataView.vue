@@ -1,4 +1,7 @@
 <template>
+	<div class="filter">
+		<Filter @filter="filterProp"/>
+	</div>
     <div class="card">
         <DataView :value="properties" :layout="layout" :paginator="true" :rows="9" :sortOrder="sortOrder" :sortField="sortField">
 			<template #header>
@@ -69,6 +72,7 @@
 import Api from '../../api/back-api'
 import Router from '@/router/index.ts'
 import PropView from '@/views/Propview.vue'
+import Filter from '@/components/filter/Filter.vue';
 
 export default {
     data() {
@@ -86,7 +90,8 @@ export default {
         }
     },
 	components: {
-		PropView
+		PropView,
+		Filter
 	},
     productService: null,
     mounted() {
@@ -119,12 +124,23 @@ export default {
 		goDetails(id){
 			//console.log(this.property)
 			this.$router.push({name: 'prop', params: {idProperty: id}})
+		},
+		filterProp(value){
+			this.properties = value
 		}
     }
 }
 </script>
 
 <style lang="scss" scoped>
+.filter{
+    margin-top: 30px;
+    height: 100%;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+}
 .card {
     background: #ffffff;
     padding: 2rem;

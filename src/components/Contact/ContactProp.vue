@@ -28,8 +28,8 @@
         <ShareNetwork
             network="whatsapp"
             :url="currentUrl"
-            title=""
-            description=""
+            :title="whatsTitle"
+            :description="whatsDescription"
             quote=""
             hashtags="">
             <img src='@/assets/whatsapp.svg' width="50" height="50"/> 
@@ -55,7 +55,9 @@ export default {
             showMessage : 'none',
             severity: 'success',
             contact: null,
-            currentUrl: ''
+            currentUrl: '',
+            whatsTitle: '',
+            whatsDescription: ''
         }
         
     },
@@ -67,10 +69,35 @@ export default {
             }
         }
     },
+    props:{
+        property: Object
+    },
+    watch: { 
+        property: function(newVal, oldVal) { 
+            this.getTitleWhats();
+            this.getDescriptionWhats();
+        }
+    },
     created(){
-        this.currentUrl = window.location.href;
+        //this.currentUrl = window.location.href + "/";
+        this.currentUrl = "http://www.globo.com"
+        console.log(this.property)
     },
     methods:{
+        getTitleWhats(){
+            if(this.property.transactionType == 1)
+                this.whatsTitle= this.property.propertyTypeCategory.description + " para Alugar"
+            else
+                this.whatsTitle= this.property.propertyTypeCategory.description + " para Vender"
+        },  
+        getDescriptionWhats(){
+            if(this.property.transactionType == 1)
+                this.whatsDescription= this.property.propertyTypeCategory.description + " para Alugar "
+            else
+                this.whatsDescription= this.property.propertyTypeCategory.description + " para Vender "
+
+            this.whatsDescription = this.whatsDescription + this.property.bedrooms + " quarto(s)"
+        },    
         async submit(){
             
             this.contact = {

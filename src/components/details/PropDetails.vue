@@ -18,7 +18,7 @@
                 <p><b>Preço: </b> {{ this.formatAsCurrency(price) }}</p>
             </template>
             <template #footer>
-                <Contact></Contact>
+                <Contact :property="property"></Contact>
             </template>
         </Card>
     </div>
@@ -55,6 +55,7 @@ export default {
     watch: { 
         property: function(newVal, oldVal) { 
             this.fillData()
+            this.$emit('setProperty', this.properties)
         }
     },
     methods:{

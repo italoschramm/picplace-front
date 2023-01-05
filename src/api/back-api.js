@@ -69,6 +69,9 @@ export default {
     getPropertyById(idProperty){
         return AXIOS.get('/property/getById/' + idProperty, this.getHeaders());
     },
+    getPropertiesByFilters(filter){
+        return AXIOS.post('/property/getByFilters', filter, this.getHeaders());
+    },
     deleteproperty(idProperty){
         return AXIOS.delete('/property/deleteById/' + idProperty, this.getHeaders());
     },
