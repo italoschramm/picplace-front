@@ -71,13 +71,12 @@
 <script>
 import Api from '../../api/back-api'
 import Router from '@/router/index.ts'
-import PropView from '@/views/Propview.vue'
 import Filter from '@/components/filter/Filter.vue';
 
 export default {
     data() {
         return {
-            properties: null,
+            properties: [],
 			property: null,
             layout: 'grid',
             sortKey: null,
@@ -90,17 +89,20 @@ export default {
         }
     },
 	components: {
-		PropView,
 		Filter
 	},
     productService: null,
-    mounted() {
-		Api.getAllProperties().then(response  => {
-			this.properties = response.data
-			});
-		console.log(this.properties);
+    created() {
+		this.getProperties();
     },
     methods: {
+		async getProperties(){
+			await Api.getAllProperties().then(response => {
+				this.properties = response.data
+			}).catch(error => {
+				console.log(error)
+			});
+		},
         onSortChange(event){
 			console.log(this.formatAsCurrency(10351));
             const value = event.value.value;

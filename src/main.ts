@@ -108,11 +108,11 @@ import TriStateCheckbox from 'primevue/tristatecheckbox';
 import VirtualScroller from 'primevue/virtualscroller';
 import VueSocialSharing from 'vue-social-sharing'
 import "primeicons/primeicons.css"; //icons
-
+import auth from '@/api/auth.js';
 import mitt from 'mitt';
+
 const emitter = mitt();
 
-import auth from './api/auth';
 
 const app = createApp(App)
 

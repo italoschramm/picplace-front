@@ -4,6 +4,12 @@
   "compilerOptions": {
     "composite": true,
     "lib": [],
-    "types": ["node", "jsdom"]
+    "types": ["node", "jsdom"],
+    "allowJs": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true
+  },
+  "build": {
+    "chunkSizeWarningLimit": 1600,
   }
 }

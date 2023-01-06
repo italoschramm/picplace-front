@@ -5,7 +5,7 @@ import http from '../api/back-api.js';
 export const useAuth = defineStore('auth', () => {
 
   const token = ref(localStorage.getItem("token"));
-  const user = ref(JSON.parse(localStorage.getItem("user")));
+  const user = ref(JSON.parse(localStorage.getItem("user") || '{}'));
 
   function setToken(tokenValue) {
     localStorage.setItem('token', tokenValue);
@@ -38,7 +38,7 @@ export const useAuth = defineStore('auth', () => {
       });
       return data;
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error);
     }
   }
 
