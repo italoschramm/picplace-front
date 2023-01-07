@@ -79,9 +79,7 @@ export default {
         }
     },
     created(){
-        //this.currentUrl = window.location.href + "/";
-        this.currentUrl = "http://www.globo.com"
-        console.log(this.property)
+        this.currentUrl = window.location.href + "/";
     },
     methods:{
         getTitleWhats(){

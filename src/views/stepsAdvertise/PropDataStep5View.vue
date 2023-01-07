@@ -2,7 +2,7 @@
     <div class="div-msg">
         <Card style="width: 25em">
             <template #header>
-                <img alt="user header" src="@/assets/quintoAndar.svg" style="height: 3rem">
+                <img alt="user header" src="@/assets/picplace.png" style="height: 6rem">
             </template>
             <template #title>
                 Em análise

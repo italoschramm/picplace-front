@@ -50,7 +50,7 @@
 							<span :class="'product-badge status-'">{{slotProps.data.city}} - {{slotProps.data.state}}</span>
 						</div>
 						<div class="product-grid-item-content">
-							<img @click="goDetails(slotProps.data.id)" :src="slotProps.data.pictures[0].code" :alt="slotProps.data.name" width="350" height="300"/>
+							<img class="img-item" @click="goDetails(slotProps.data.id)" :src="slotProps.data.pictures[0].code" :alt="slotProps.data.name"/>
 							<!-- <div class="product-name">{{slotProps.data.name}}</div> -->
 							<div class="product-name">{{slotProps.data.district}}</div>
 							<!-- <div class="product-description">{{slotProps.data.description}}</div> -->
@@ -135,6 +135,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.img-item{
+	max-width: 100%;
+}
 .filter{
     margin-top: 30px;
     height: 100%;

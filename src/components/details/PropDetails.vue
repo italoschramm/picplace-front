@@ -16,6 +16,7 @@
                 <p><b>Área útil: </b> {{ usableArea }}m²</p> 
                 <p><b>Área total: </b> {{ totalArea }}m²</p>
                 <p><b>Preço: </b> {{ this.formatAsCurrency(price) }}</p>
+                <p><b>Condomínio: </b> {{ this.formatAsCurrency(condominiumFEE) }}</p>
             </template>
             <template #footer>
                 <Contact :property="property"></Contact>
@@ -42,7 +43,8 @@ export default {
             totalArea: 0,
             transactionType: 0,
             propertyTypeCategory: '',
-            price: 0
+            price: 0,
+            condominiumFEE: 0
         }
         
     },
@@ -71,6 +73,7 @@ export default {
             this.totalArea = this.property.totalArea;
             this.transactionType = this.transactionType.id
             this.propertyTypeCategory = this.property.propertyTypeCategory.description;
+            this.condominiumFEE = this.property.condominiumFEE;
             this.price = this.property.price;
         },
         formatAsCurrency:  function(value) {

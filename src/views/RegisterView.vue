@@ -200,7 +200,7 @@ export default {
             this.submitted = false;
         },
         redirect(){
-            router.push('/advertiseSteps')
+            router.push('/advertise')
         }
     }
 }
