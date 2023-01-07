@@ -207,24 +207,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form-demo {
     .card {
-        min-width: 450px;
+        min-width: 50%;
 
         form {
             margin-top: 2rem;
         }
+    }
 
-        .field {
+    .field {
+            width: 100%;
             margin-bottom: 1.5rem;
         }
-    }
 
     @media screen and (max-width: 960px) {
         .card {
             width: 80%;
         }
-    }
 }
 
 </style>

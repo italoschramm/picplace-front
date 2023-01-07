@@ -41,6 +41,7 @@ export default {
     height: 50px;
     margin-top: 30px;
     display: flex;
+    margin-bottom: 80px;
 }
 
 </style>

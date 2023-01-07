@@ -2,7 +2,7 @@
     <div class=".tabmenudemo-content">
         <div class="container">
             <div class="box">
-                <div class="msg-error">
+                <div class="div-item">
                     <Message severity="error" :key="id" v-show="showError == 'none' ? false : true">{{ messageError}}</Message>
                 </div>
                 <div class="div-item">
@@ -20,9 +20,9 @@
                 <div class="div-item">
                     <Button label="Entrar" @click="login()"/>
                 </div>
-                <div class="div-link">
+<!--                 <div class="div-link">
                     <Button label="Esqueci minha senha" class="p-button-link"/>
-                </div>
+                </div> -->
                 <div class="div-link">
                     <Button label="Cadastre-se aqui" class="p-button-link" @click="register()"/>
                 </div>
@@ -75,7 +75,6 @@ export default {
                     router.push('/advertise')
                 }).catch ((error)=> {
                     var message = error.message
-                    console.log("Message: " + message)
                     if(message.toString().indexOf('403') > -1)
                         this.messageError = "Login e senha inválidos"
                     else {
@@ -155,6 +154,5 @@ export default {
     width: 600px;
     margin-top: 10px;
 }
-
 
   </style>
