@@ -49,18 +49,18 @@
                         <div class="p-float-label">
                             <Password id="password" v-model="v$.password.$model" :class="{'p-invalid':v$.password.$invalid && submitted}" toggleMask>
                                 <template #header>
-                                    <h6>Pick a password</h6>
+                                    <h6>Escolha uma senha</h6>
                                 </template>
                                 <template #footer="sp">
                                     {{sp.level}}
                                     <Divider />
-                                    <p class="mt-2">Suggestions</p>
-                                    <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
-                                        <li>At least one lowercase</li>
-                                        <li>At least one uppercase</li>
-                                        <li>At least one numeric</li>
-                                        <li>Minimum 8 characters</li>
-                                    </ul>
+                                    <p class="mt-2">Sugestões</p>
+                                        <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                                        <li>Pelo menos uma letra minúscula</li>
+                                        <li>Pelo menos uma letra maiúscula</li>
+                                        <li>Pelo menos um número</li>
+                                        <li>Mínimo de 8 caracteres </li>
+                                        </ul>
                                 </template>
                             </Password>
                             <label for="password" :class="{'p-error':v$.password.$invalid && submitted}">Senha*</label>
@@ -166,18 +166,19 @@ export default {
                 http.login(credentials).then(responseLogin => {
                     var loginData = {
                                     id_token: responseLogin.data.token,
-                                    authorizations: responseLogin.data.user.authorizations
+                                    authorizations: responseLogin.data.user.authorizations,
+                                    id: responseLogin.data.user.id
                     }
                     auth.saveLogin(loginData);
                 }).catch ((error)=> {
                     this.messageError = error.message
-                    console.log("Message: " + this.messageError)
                     this.showError = 'block' 
                 });
                 this.toggleDialog();
             }).catch((error) => {
                 this.messageError = error.message
-                console.log("Message: " + this.messageError)
+                if(error.message.toString().indexOf('409') > -1)
+                    this.messageError = "Email informado já existe"
                 this.showError = 'block' 
             });
             

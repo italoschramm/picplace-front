@@ -58,6 +58,7 @@ export default {
           }
   },
   created(){
+      console.log(Auth)
       Api.getUser(Auth.getUserId()).then(response  => {
         this.user = response.data;
         console.log(this.user)
@@ -120,13 +121,9 @@ export default {
 
 .main{
   margin-top: 50px;
-  align-items: center;
-  justify-items: center;
   display: flex;
   width: 100%;
   height: 100%;
-  align-content: center;
-  justify-content: center;
   flex-direction: row;
   position: relative;
   display: grid;

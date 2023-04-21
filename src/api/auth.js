@@ -25,6 +25,9 @@ export default {
   },
 
   saveLogin(login){
+    console.log("1")
+    console.log(login)
+    console.log("2")
     localStorage.setItem('id_token', login.id_token);
     localStorage.setItem('authorizations', login.authorizations);
     localStorage.setItem('idUser', login.id)

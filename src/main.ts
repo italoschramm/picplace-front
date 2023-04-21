@@ -111,6 +111,10 @@ import "primeicons/primeicons.css"; //icons
 import auth from '@/api/auth.js';
 import mitt from 'mitt';
 
+//VueSax
+import Vuesax from 'vuesax3'
+import 'vuesax3/dist/vuesax.css'
+
 const emitter = mitt();
 
 
@@ -121,6 +125,8 @@ app.config.globalProperties.emitter = emitter;
 const pinia = createPinia();
 
 auth.checkAuth()
+
+app.use(Vuesax);
 
 app.use(ToastService);
 app.use(pinia)

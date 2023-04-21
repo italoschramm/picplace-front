@@ -1,12 +1,16 @@
 <script setup lang="ts">
- import TabMenuItems from './components/menu/TabMenuItems.vue';
- import Footer from '@/components/footer/Footer.vue'
+ import Logo from './components/logo/Logo.vue';
+ import Nav from './components/navigation/Nav.vue';
 </script>
 
 <template>
   <header>
-    <TabMenuItems/>
   </header>
-    <Footer />
+    <Logo />
+    <Nav />
 </template>
+
+<style>
+
+</style>
 

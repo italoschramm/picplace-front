@@ -10,28 +10,25 @@
             </span>
           </div>
           <div class='field'>
+            <label for="name">Trocar Senha</label>
             <span class="p-float-label">
-              <InputText id="lastname" type="text" v-model="user.customer.lastname" />
-              <label for="lastname">Sobrenome</label>
+              <Password v-model="user.password">
+                <template #header>
+                  <h6>Trocar Senha</h6>
+                </template>
+                <template #footer="sp">
+                  {{sp.level}}
+                  <Divider />
+                    <p class="mt-2">Sugestões</p>
+                    <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                      <li>Pelo menos uma letra minúscula</li>
+                      <li>Pelo menos uma letra maiúscula</li>
+                      <li>Pelo menos um número</li>
+                      <li>Mínimo de 8 caracteres </li>
+                    </ul>
+                </template>
+              </Password>
             </span>
-          </div>
-          <div class='field'>
-            <Password v-model="user.password">
-            <template #header>
-                <h6>Senha</h6>
-            </template>
-            <template #footer="sp">
-                {{sp.level}}
-                <Divider />
-                <p class="mt-2">Suggestions</p>
-                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
-                    <li>At least one lowercase</li>
-                    <li>At least one uppercase</li>
-                    <li>At least one numeric</li>
-                    <li>Minimum 8 characters</li>
-                </ul>
-            </template>
-        </Password>
           </div>
           <div class='field'>
             <Button label="Salvar" class="btn-salvar" @click="salvar()"/>
@@ -118,8 +115,8 @@ export default {
               Api.saveUser(user).then(response => {
                 this.$toast.add({severity:'info', summary:'Confirmed', detail:'Imóvel deletado', life: 3000});
               }).catch(error => {
-                  console.log(error)
-                  this.$toast.add({severity:'error', summary:'Rejected', detail: error.message, life: 3000});
+                var message = error.message
+                this.$toast.add({severity:'error', summary:'Rejected', detail: error.message, life: 3000});
               });
           }
   }
@@ -144,13 +141,9 @@ export default {
 
 .main{
   margin-top: 50px;
-  align-items: center;
-  justify-items: center;
   display: flex;
   width: 100%;
   height: 100%;
-  align-content: center;
-  justify-content: center;
   flex-direction: row;
   position: relative;
   display: grid;
@@ -158,8 +151,6 @@ export default {
 
 .profile{
   margin-top: 50px;
-  align-items: center;
-  justify-items: center;
   display: flex;
   width: 100%;
   height: 100%;

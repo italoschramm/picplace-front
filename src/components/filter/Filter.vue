@@ -11,10 +11,10 @@
                     <Dropdown v-model="selectTransaction" :options="transactions" optionLabel="description" placeholder="Tipo"  />
                 </div>
                 <div class="field col-12 md:col-2">
-                    <InputNumber id="price" v-model="priceMinimum" mode="currency" currency="BRL" />
+                    <InputNumber id="price" v-model="priceMinimum" mode="currency" currency="BRL" placeholder="Cidade"/>
                 </div>
                 <div class="field col-12 md:col-2">
-                    <InputNumber id="price" v-model="priceMaximum" mode="currency" currency="BRL" />
+                    <InputNumber id="price" v-model="priceMaximum" mode="currency" currency="BRL" placeholder="Cidade" />
                 </div>
                 <div class="field col-12 md:col-2">
                     <Button type="button" icon="pi pi-search"  @click="filter" />

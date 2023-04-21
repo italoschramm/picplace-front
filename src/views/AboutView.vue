@@ -6,7 +6,9 @@
             </template>
             <template #content>
                 <p>
-                  Nossa missão é facilitar a vida de milhares de proprietários e corretores ao divulgar seus imóveis. Levando até você cliente, anúncios de qualidade, eficiente e que possam ajudar na decisão mais importante de sua vida, que ao adquirir seu imóvel, este seja um processo agradável e seguro.</p>
+                  Chegamos para mudar o mercado imobiliário 
+
+                  Nossa missão é facilitar a vida de milhares de proprietários e corretores ao divulgar seus imóveis de forma gratuita. Levamos até você cliente, anúncios de qualidade, eficiente e que possam ajudar na decisão importante em sua vida, que é a aquisição de um novo imóvel. Estimamos que este seja um processo agradável, ágil e seguro.</p>
             </template>
     </Card>
   </div>
@@ -34,13 +36,10 @@ export default {
 
 <style>
 .about{
+  justify-content: center;
   margin-top: 50px;
-  align-items: center;
-  justify-items: center;
   display: flex;
   width: 100%;
   height: 100%;
-  align-content: center;
-  justify-content: center;
 }
 </style>

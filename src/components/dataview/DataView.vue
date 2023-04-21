@@ -1,15 +1,12 @@
 <template>
-	<div class="filter">
-		<Filter @filter="filterProp"/>
-	</div>
     <div class="card">
         <DataView :value="properties" :layout="layout" :paginator="true" :rows="9" :sortOrder="sortOrder" :sortField="sortField">
 			<template #header>
                 <div class="grid grid-nogutter">
-                    <div class="col-6" style="text-align: left">
-                        <Dropdown v-model="sortKey" :options="sortOptions" optionLabel="label" placeholder="Sort By Price" @change="onSortChange($event)"/>
+                    <div class="col-8" style="text-align: left">
+                        <Dropdown v-model="sortKey" :options="sortOptions" optionLabel="label" placeholder="Ordenar por preço" @change="onSortChange($event)" style="width:12rem"/>
                     </div>
-                    <div class="col-6" style="text-align: right">
+                    <div class="col-4" style="text-align: right">
                         <DataViewLayoutOptions v-model="layout" />
                     </div>
                 </div>
@@ -71,7 +68,6 @@
 <script>
 import Api from '../../api/back-api'
 import Router from '@/router/index.ts'
-import Filter from '@/components/filter/Filter.vue';
 
 export default {
     data() {
@@ -83,14 +79,11 @@ export default {
             sortOrder: null,
             sortField: null,
             sortOptions: [
-                {label: 'Price High to Low', value: '!price'},
-                {label: 'Price Low to High', value: 'price'},
+                {label: 'Preço maior', value: '!price'},
+                {label: 'Preço menor', value: 'price'},
             ]
         }
     },
-	components: {
-		Filter
-	},
     productService: null,
     created() {
 		this.getProperties();
@@ -143,7 +136,7 @@ export default {
     margin-top: 30px;
     height: 100%;
     width: 100%;
-    align-content: center;
+    align-content: top;
     justify-content: center;
     display: flex;
 }

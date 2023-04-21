@@ -35,11 +35,12 @@ export default {
 <style lang="scss" scoped>
 
 .footer{
+    position: absolute;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 50px;
-    margin-top: 30px;
+    margin-bottom: 30px;
     display: flex;
     margin-bottom: 80px;
 }
