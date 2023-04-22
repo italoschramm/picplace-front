@@ -1,7 +1,16 @@
 import axios from 'axios'
 
+let baseURL;
+
+if (process.env.NODE_ENV === 'production') {
+    baseURL = 'http://34.235.73.241:8090';
+  } else {
+    // desenvolvimento
+    baseURL = 'http://localhost:8090';
+  }
+
 const AXIOS = axios.create({
-    baseURL: 'http://54.83.103.70:8090',
+    baseURL: baseURL,
     timeout: 50000
   });
 

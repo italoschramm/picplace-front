@@ -30,6 +30,7 @@
             :url="currentUrl"
             :title="whatsTitle"
             :description="whatsDescription"
+            :image="img"
             quote=""
             hashtags="">
             <img src='@/assets/whatsapp.svg' width="50" height="50"/> 
@@ -45,6 +46,19 @@ import { useVuelidate } from "@vuelidate/core";
 import { email, required } from "@vuelidate/validators";
 
 export default {
+    metaInfo: {
+    head: {
+      meta: [
+        { property: 'og:url', content: 'https://www.globo.com' },
+        { property: 'og:title', content: 'Título da Página' },
+        { property: 'og:description', content: 'Descrição da Página' },
+        { property: 'og:image', content: 'https://seusite.com/imagem.jpg' },
+        { property: 'og:image:secure_url', content: 'https://seusite.com/imagem.jpg' },
+        { property: 'og:image:alt', content: 'Texto alternativo da imagem' },
+        { property: 'og:type', content: 'website' }
+      ]
+    }
+  },
     setup: () => ({ v$: useVuelidate() }),
     data() {
         return {
@@ -57,7 +71,8 @@ export default {
             contact: null,
             currentUrl: '',
             whatsTitle: '',
-            whatsDescription: ''
+            whatsDescription: '',
+            img: ''
         }
         
     },
@@ -95,6 +110,9 @@ export default {
                 this.whatsDescription= this.property.propertyTypeCategory.description + " para Vender "
 
             this.whatsDescription = this.whatsDescription + this.property.bedrooms + " quarto(s)"
+        },
+        getImgPropertyForWhats(){
+            this.img = this.property.pictures[0];
         },    
         async submit(){
             
