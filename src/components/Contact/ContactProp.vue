@@ -47,7 +47,7 @@ import { useVuelidate } from "@vuelidate/core";
 import { email, required } from "@vuelidate/validators";
 
 export default {
-    head: {
+    metaInfo: {
       meta: [
         { property: 'og:url', content: 'https://www.globo.com' },
         { property: 'og:title', content: 'Título da Página' },
