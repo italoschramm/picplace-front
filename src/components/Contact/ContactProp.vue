@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import VueMeta from 'vue-meta';
 import http from '@/api/back-api.js';
 import { useVuelidate } from "@vuelidate/core";
 import { email, required } from "@vuelidate/validators";
