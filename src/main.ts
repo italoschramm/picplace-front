@@ -110,11 +110,14 @@ import VueSocialSharing from 'vue-social-sharing'
 import "primeicons/primeicons.css"; //icons
 import auth from '@/api/auth.js';
 import mitt from 'mitt';
+import { createHead } from '@vueuse/head'
 
 //VueSax
 import Vuesax from 'vuesax3'
 import 'vuesax3/dist/vuesax.css'
 
+
+const head = createHead()
 const emitter = mitt();
 
 
@@ -134,6 +137,7 @@ app.use(router);
 app.use(PrimeVue);
 app.use(VueSocialSharing);
 app.use(ConfirmationService);
+app.use(head);
 
 app.component('TabMenu', TabMenu);
 app.component('Button', Button);

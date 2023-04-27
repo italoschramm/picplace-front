@@ -28,8 +28,30 @@
 <script>
 import http from '@/api/back-api.js';
 import Contact from '@/components/Contact/ContactProp.vue'
+import { useHead } from '@vueuse/head'
+import { onMounted, watchEffect  } from "vue"
 
 export default {
+    setup(props) {
+    watchEffect(() => {
+      if (props.property) {
+        useHead({
+          title: 'PicPlace',
+          meta: [
+            {
+              name: 'description',
+              content: props.property.transactionType.description + ' de ' + props.property.propertyTypeCategory.description + ' - ' + props.property.description,
+            },
+            {
+              name: 'og:image',
+              content: props.property.pictures[0].code  
+            }
+          ],
+        });
+      }
+    });
+  },
+
     data() {
         return {
             address: '',
@@ -44,7 +66,8 @@ export default {
             transactionType: 0,
             propertyTypeCategory: '',
             price: 0,
-            condominiumFEE: 0
+            condominiumFEE: 0,
+            description: ''
         }
         
     },
@@ -56,6 +79,7 @@ export default {
     },
     watch: { 
         property: function(newVal, oldVal) { 
+            console.log('Iniciado 2')
             this.fillData()
             this.$emit('setProperty', this.properties)
         }
@@ -75,6 +99,7 @@ export default {
             this.propertyTypeCategory = this.property.propertyTypeCategory.description;
             this.condominiumFEE = this.property.condominiumFEE;
             this.price = this.property.price;
+            this.description = this.property.description;
         },
         formatAsCurrency:  function(value) {
 			var number = parseFloat(value).toLocaleString('pt-BR',{ style: 'currency', currency: 'BRL' });
