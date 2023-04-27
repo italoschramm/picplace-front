@@ -17,6 +17,18 @@ useHead({
       name: `description`,
       content: computed(() => siteData.description),
     },
+    {
+      property: 'og:description',
+      content: siteData.description
+    },
+    {
+      property: 'og:image',
+      content: '' 
+    },
+    {
+      property: 'og:title',
+      content: ''
+    }
   ],
 })
 </script>
