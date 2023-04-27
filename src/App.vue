@@ -26,8 +26,8 @@ useHead({
       content: '' 
     },
     {
-      property: 'og:title',
-      content: ''
+      property: 'og:url',
+      content: 'http://www.picplace.com.br/'
     }
   ],
 })

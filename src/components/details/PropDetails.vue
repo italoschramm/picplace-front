@@ -49,6 +49,10 @@ export default {
             {
               property: 'og:title',
               content: props.property.transactionType.description + ' de ' + props.property.propertyTypeCategory.description
+            },
+            {
+              property: 'og:url',
+              content: 'http://www.picplace.com.br/prop/' + props.property.id
             }
           ],
         });
