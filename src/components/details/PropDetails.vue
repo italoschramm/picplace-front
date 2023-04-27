@@ -36,7 +36,7 @@ export default {
     watchEffect(() => {
       if (props.property) {
         useHead({
-          title: 'PicPlace',
+          title: props.property.transactionType.description + ' de ' + props.property.propertyTypeCategory.description + " na cidade de " + props.property.city,
           meta: [
             {
               property: 'og:description',
