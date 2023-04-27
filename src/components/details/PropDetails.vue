@@ -39,12 +39,16 @@ export default {
           title: 'PicPlace',
           meta: [
             {
-              name: 'description',
-              content: props.property.transactionType.description + ' de ' + props.property.propertyTypeCategory.description + ' - ' + props.property.description,
+              property: 'og-description',
+              content: props.property.description
             },
             {
-              name: 'og:image',
+              property: 'og:image',
               content: props.property.pictures[0].code  
+            },
+            {
+              property: 'og:title',
+              content: props.property.transactionType.description + ' de ' + props.property.propertyTypeCategory.description
             }
           ],
         });
