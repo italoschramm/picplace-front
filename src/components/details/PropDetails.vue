@@ -39,7 +39,7 @@ export default {
           title: 'PicPlace',
           meta: [
             {
-              property: 'og-description',
+              property: 'og:description',
               content: props.property.description
             },
             {
