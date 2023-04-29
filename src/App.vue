@@ -5,7 +5,7 @@ import { computed, reactive } from 'vue';
 import { useHead } from '@vueuse/head';
 
 const siteData = reactive({
-  title: 'PicPlace',
+  title: 'PicPlace Teste Aqui',
   description: 'Especialistas em Soluções Imobiliárias, para que você tenha uma experiência agradável. PicPlace, o melhor caminho para encontrar seu lugar no mundo.',
 })
 
