@@ -39,6 +39,10 @@ export default {
           title: props.property.transactionType.description + ' de ' + props.property.propertyTypeCategory.description + " na cidade de " + props.property.city,
           meta: [
             {
+              name: "title",
+              content: props.property.transactionType.description + ' de ' + props.property.propertyTypeCategory.description + " na cidade de " + props.property.city,
+            },
+            {
               property: 'og:description',
               content: props.property.description
             },
@@ -49,6 +53,10 @@ export default {
             {
               name: 'description',
               content: props.property.description 
+            },
+            {
+              property: 'og:type',
+              content: "website"
             },
             {
               property: 'og:image',
