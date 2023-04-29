@@ -43,11 +43,11 @@ export default {
               content: props.property.description
             },
             {
-              itemprop=: 'description',
+              itemprop: 'description',
               content: props.property.description 
             },
             {
-              name=: 'description',
+              name: 'description',
               content: props.property.description 
             },
             {
