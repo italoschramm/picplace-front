@@ -14,8 +14,20 @@ useHead({
   title: computed(() => siteData.title),
   meta: [
     {
-      name: `description`,
+      name: 'description',
       content: computed(() => siteData.description),
+    },
+    {
+      property: 'og:type',
+      content: "website"
+    },
+    {
+      name: "title",
+      content: "PicPlace",
+    },
+    {
+      property: 'og:title',
+      content: "PicPlace"
     },
     {
       property: 'og:description',
@@ -27,10 +39,11 @@ useHead({
     },
     {
       property: 'og:url',
-      content: 'http://www.picplace.com.br/'
+      content: 'https://www.picplace.com.br/'
     }
   ],
 })
+
 </script>
 
 <template>
