@@ -3,7 +3,7 @@ import axios from 'axios'
 let baseURL;
 
 if (process.env.NODE_ENV === 'production') {
-    baseURL = 'https://34.235.73.241:8090';
+    baseURL = 'http://34.235.73.241:8090';
   } else {
     // desenvolvimento
     baseURL = 'http://localhost:8090';

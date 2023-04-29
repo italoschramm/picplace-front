@@ -6,8 +6,6 @@
             </template>
             <template #content>
                 <p>
-                  Chegamos para mudar o mercado imobiliário 
-
                   Nossa missão é facilitar a vida de milhares de proprietários e corretores ao divulgar seus imóveis de forma gratuita. Levamos até você cliente, anúncios de qualidade, eficiente e que possam ajudar na decisão importante em sua vida, que é a aquisição de um novo imóvel. Estimamos que este seja um processo agradável, ágil e seguro.</p>
             </template>
     </Card>

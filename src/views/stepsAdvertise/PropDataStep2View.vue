@@ -51,6 +51,7 @@
                     <div class="field">
                         <label for="description">Outras informações sobre o imóvel</label>
                         <InputText id="description" v-model="description"/>
+                        <small v-show="validationErrors.descriptionLengh && submitted" class="p-error">Não pode conter mais do que 1000 caracteres. Quantidade atual: {{ this.description.length }}</small>
                     </div>
                     <div class="field">
                         <label for="price">Valor</label>
@@ -99,7 +100,8 @@ export default {
             price: 0,
             condominiumFEE: 0,
             submitted: false,
-            validationErrors: {}
+            validationErrors: {},
+            qtyCharDescription: 0
         }
     },
     props: {
@@ -199,6 +201,11 @@ export default {
                 this.validationErrors['price'] = true;
             else
                 delete this.validationErrors['price'];
+
+            if (this.description.length > 1000)
+                this.validationErrors['descriptionLengh'] = true;
+            else 
+                delete this.validationErrors['descriptionLengh'];
 
             return !Object.keys(this.validationErrors).length;
         }

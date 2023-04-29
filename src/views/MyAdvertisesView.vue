@@ -22,20 +22,12 @@
             </template>
         </OrderList>
       </div>
-      <div class='field'>
-        <ConfirmPopup></ConfirmPopup>
-        <ConfirmPopup group="demo">
-            <template #message="slotProps">
-                <div class="flex p-4">
-                    <i :class="slotProps.message.icon" style="font-size: 1.5rem"></i>
-                    <p class="pl-2">{{slotProps.message.message}}</p>
-                </div>
-            </template>
-        </ConfirmPopup>
-        <Toast />
+      </Fieldset>
+      <Toast />
+      <ConfirmDialog></ConfirmDialog>
+      <div class="card flex flex-wrap gap-2 justify-content-center">
         <Button @click="confirm2($event)" icon="pi pi-times" label="Delete" class="p-button-danger p-button-outlined"></Button>
       </div>
-      </Fieldset>
     </div>
     </div>
 </template>
@@ -43,6 +35,8 @@
 <script>
 import Auth from '@/api/auth';
 import Api from '@/api/back-api'
+import { useConfirm } from "primevue/useconfirm";
+import { useToast } from "primevue/usetoast";
 
 export default {
   name: 'App',
@@ -75,6 +69,7 @@ export default {
                 message: 'Deseja realmente excluir esse imóvel?',
                 icon: 'pi pi-info-circle',
                 acceptClass: 'p-button-danger',
+                header: 'Delete Confirmation',
                 accept: () => {
                     Api.deleteproperty(this.property.id).then(response =>{
                       this.$toast.add({severity:'info', summary:'Confirmed', detail:'Imóvel deletado', life: 3000});
