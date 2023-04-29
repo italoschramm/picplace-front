@@ -129,7 +129,11 @@ const pinia = createPinia();
 
 auth.checkAuth()
 
-app.use(Vuesax);
+const vuesaxPlugin = {
+    install(app: any) {
+      app.use(Vuesax);
+    },
+  };
 
 app.use(ToastService);
 app.use(pinia)
