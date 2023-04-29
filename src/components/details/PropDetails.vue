@@ -43,6 +43,14 @@ export default {
               content: props.property.description
             },
             {
+              itemprop=: 'description',
+              content: props.property.description 
+            },
+            {
+              name=: 'description',
+              content: props.property.description 
+            },
+            {
               property: 'og:image',
               content: props.property.pictures[0].code  
             },
@@ -52,7 +60,7 @@ export default {
             },
             {
               property: 'og:url',
-              content: 'http://www.picplace.com.br/prop/' + props.property.id
+              content: 'https://www.picplace.com.br/prop/' + props.property.id
             }
           ],
         });
