@@ -1,4 +1,12 @@
 <template>
+  <Head>
+    <html lang="en"></html>
+
+    <body class="body"></body>
+
+    <title>"Teste"</title>
+    <meta name="description" content="Esse é um teste">
+  </Head>
     <div>
         <Card style="max-width: 50rem; margin-bottom: 2em">
             <template #title>
