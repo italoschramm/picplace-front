@@ -123,6 +123,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  
+  updateMetaTags(to);
+  
   if(to.matched.some(record => record.meta.requiresAuth)) {
     if (Auth.user.authenticated) {
       console.log("User: " + Auth.user.authenticated)
@@ -136,5 +139,21 @@ router.beforeEach((to, from, next) => {
     next() 
   }
 })
+
+function updateMetaTags(to) {
+  const meta = to.meta || {};
+
+  // Define as informações da página
+  const title = meta.title || 'Minha aplicação';
+  const description = meta.description || 'Descrição da minha aplicação';
+  const keywords = meta.keywords || 'palavras-chave, da, minha, aplicação';
+
+  // Atualiza as meta tags
+  document.title = title;
+  const metaDescription = document.querySelector('meta[name="description"]');
+if (metaDescription) {
+  metaDescription.setAttribute('content', description);
+}
+}
 
 export default router
